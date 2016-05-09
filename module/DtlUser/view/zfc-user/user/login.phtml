@@ -1,0 +1,66 @@
+<?php
+$form = $this->loginForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('zfcuser/login'));
+$form->setAttribute('method', 'post');
+$form->setAttribute('autocomplete', 'off');
+$form->get('identity')->setAttribute('class', 'form-control');
+$form->get('credential')->setAttribute('class', 'form-control');
+?>
+<div class="row">
+    <div class="col-lg-4 col-lg-offset-4">
+        <div class="user-login-box">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <?php echo $this->translate('Login de Usuário'); ?>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <?php echo $this->form()->openTag($form) ?>
+                    <?php echo $this->formElementErrors($form->get('identity')) ?>
+                    <div class="form-group">
+                        <div class="input-group" title="Username">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <?php echo $this->formInput($form->get('identity')) ?>
+                        </div>
+                    </div>
+
+                    <?php echo $this->formElementErrors($form->get('credential')) ?>
+                    <div class="form-group">
+                        <div class="input-group" title="Password">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <?php echo $this->formInput($form->get('credential')) ?>
+                        </div>
+                    </div>
+                    <div class="checkbox">
+                        <label class="remember" for="remember">
+                            <input type="checkbox" id="remember" /> <?php echo $this->translate('Manter conectado'); ?>
+                        </label>
+                    </div>
+
+                    <div class="button-login">
+                        <?php
+                        echo $this->formButton($form->get('submit')
+                                        ->setAttributes(array('class' => 'btn btn-primary btn-block'))
+                                        ->setLabel('Entrar'));
+                        ?>
+                    </div>
+
+                    <?php if ($this->redirect): ?>
+                        <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
+                    <?php endif ?>
+                    <?php echo $this->form()->closeTag() ?>
+                </div>
+                <div class="panel-footer">
+                    <?php if ($this->enableRegistration) : ?>
+                        <p>
+                            <?php echo $this->translate('Ainda não possui cadastro?'); ?>
+                            <a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect=' . $this->escapeUrl($this->redirect) : '') ?>"><?php echo $this->translate('Registre-se!'); ?></a>
+                        </p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

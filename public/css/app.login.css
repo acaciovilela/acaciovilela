@@ -1,0 +1,13 @@
+body {
+    overflow: hidden;
+}
+
+/* USER LOGIN */
+.user-login-box {
+    margin-top: 100px;
+}
+
+.user-login-remember {
+    color: #999;
+    font-weight: normal;
+}

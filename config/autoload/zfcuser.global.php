@@ -7,8 +7,6 @@
  */
 $settings = array(
     
-    'enable_default_entities' => false,
-    
     /**
      * Zend\Db\Adapter\Adapter DI Alias
      *
